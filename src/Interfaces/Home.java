@@ -230,6 +230,7 @@ public class Home extends javax.swing.JFrame {
                         // Abre la interfaz Enfermera
                         InterfazEnfermera enfermera = new InterfazEnfermera();
                         enfermera.setVisible(true);
+                        this.setEnabled(false);
                         break;
                     case 1:
                         // Abre la interfaz Medicamento

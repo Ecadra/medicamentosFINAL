@@ -532,6 +532,11 @@ public class InterfazVisita extends javax.swing.JFrame {
         );
 
         btnRegresar.setText("Regresar al menú principal");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -853,6 +858,20 @@ public class InterfazVisita extends javax.swing.JFrame {
             tbdFunciones.setSelectedIndex(0);
         }
     }//GEN-LAST:event_btnBorrar2ActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+         // TODO add your handling code here:
+         try{
+           Home inicio = new Home();
+            inicio.setVisible(true);
+            // Cerrar la ventana
+            dispose();  
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error",
+                    "Error",0);
+
+        }
+    }//GEN-LAST:event_btnRegresarActionPerformed
     public void actualizarCombos() {
         cmbPaciente.removeAllItems();
         MetodosVisita metodos = new VisitaImplementacion();
