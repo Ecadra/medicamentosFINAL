@@ -547,6 +547,8 @@ public class InterfazComposicion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarComposicionActionPerformed
 
     private void btnActualizarComposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarComposicionActionPerformed
+        boolean  error= false;
+        int cantidad=0;
         Composicion composicion = new Composicion();
         MetodosComposicion metodosComposicion = new ComposicionImplementacion();
         int afectadas=-1;
@@ -556,31 +558,54 @@ public class InterfazComposicion extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){         
             
             try{
-               composicion.setNombreMedicamento((String)cmbMedComp.getSelectedItem());
-               System.out.println((String)cmbMedComp.getSelectedItem());
-               composicion.setNombrePrincipio((String)cmbPrinComp.getSelectedItem());
-               System.out.println((String)cmbPrinComp.getSelectedItem());
-               composicion.setCompConcentracion(Integer.parseInt(txtCantComp.getText()));
-               composicion.setCompUnidades((String) cmbUnidadComp.getSelectedItem());
-               int id = metodosComposicion.recuperarIdComposicion(
-                       (String)(tblComposicion.getValueAt(tblComposicion.getSelectedRow(), 0)),
-                       (String)(tblComposicion.getValueAt(tblComposicion.getSelectedRow(), 1))
-                       );  
-               //System.out.println("El id es: " + id);   Es una bandera
-               composicion.setIdComposicion(id);
-               afectadas = metodosComposicion.modificarComposicion(composicion); 
-               //System.out.println("Las afectadas fueron: " + afectadas); 
+                
+               if("".equals(txtCantComp.getText())){
+                JOptionPane.showMessageDialog(null, "Debe de especificar una cantidad","Error",0);
+                error=true;
+            }else{
+                try{
+                    if(Integer.parseInt(txtCantComp.getText())<=0 )
+                    {
+                        JOptionPane.showMessageDialog(null, "La cantidad debe de ser mayor a 0","Error",0);
+                        error=true;
+                        txtCantComp.setText("");
+                    }else
+                    {
+                        cantidad=Integer.parseInt(txtCantComp.getText());
+                        composicion.setNombreMedicamento((String)cmbMedComp.getSelectedItem());
+                        System.out.println((String)cmbMedComp.getSelectedItem());
+                        composicion.setNombrePrincipio((String)cmbPrinComp.getSelectedItem());
+                        System.out.println((String)cmbPrinComp.getSelectedItem());
+                        composicion.setCompConcentracion(cantidad);
+                        composicion.setCompUnidades((String) cmbUnidadComp.getSelectedItem());
+                        int id = metodosComposicion.recuperarIdComposicion(
+                                (String)(tblComposicion.getValueAt(tblComposicion.getSelectedRow(), 0)),
+                                (String)(tblComposicion.getValueAt(tblComposicion.getSelectedRow(), 1))
+                                );  
+                        //System.out.println("El id es: " + id);   Es una bandera
+                        composicion.setIdComposicion(id);
+                        afectadas = metodosComposicion.modificarComposicion(composicion); 
+                        //System.out.println("Las afectadas fueron: " + afectadas); 
 
+
+                         ///Limpia los campos de informacion
+                         limpiarComposicion();
+                         ///Desactiva los campos y regresa al estado inicial de la interfaz
+                         activarPresentacion(false);
+
+                         btnEliminarComposicion.setEnabled(false);
+                         btnActualizarComposicion.setEnabled(false);
+                         btnLimpiarComposicion.setEnabled(false);
+                         btnNewComposicion.setEnabled(true); 
+                    }
+                }catch(NumberFormatException err){
+                    txtCantComp.setText("");
+                    error=true;
+                    JOptionPane.showMessageDialog(null, "La cantidad debe de ser numérica","Error",0);
+                }       
+
+            }
                
-                ///Limpia los campos de informacion
-                limpiarComposicion();
-                ///Desactiva los campos y regresa al estado inicial de la interfaz
-                activarPresentacion(false);
-            
-                btnEliminarComposicion.setEnabled(false);
-                btnActualizarComposicion.setEnabled(false);
-                btnLimpiarComposicion.setEnabled(false);
-                btnNewComposicion.setEnabled(true); 
             }catch(Exception ex){
                 Logger.getLogger(InterfazComposicion.class.getName()).log(Level.SEVERE, null, ex);
             }  
