@@ -4,7 +4,6 @@
  */
 package Interfaces;
 import Implementaciones.AdministracionImplementacion;
-import Interfaces.InterfazAdministracion;
 import Modelos.Administracion;
 import java.awt.Color;
 import java.util.Date;
@@ -426,7 +425,7 @@ public class InterfazAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-   /* try{
+   try{
            Home inicio = new Home();
             inicio.setVisible(true);
             // Cerrar la ventana
@@ -436,7 +435,6 @@ public class InterfazAdministracion extends javax.swing.JFrame {
                     "Error",0);
 
         }
-        */
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed

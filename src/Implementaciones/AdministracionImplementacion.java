@@ -315,34 +315,42 @@ public class AdministracionImplementacion extends Conecta implements MetodosAdmi
 
     @Override
     public int modificarAdministracion(Administracion administracion) throws Exception {
-      int filasAfectadas = -1;
+        int filasAfectadas = -1;
     int id_enf = 0, id_con = 0;
+    PreparedStatement ST = null;
+
     try {
         this.conectar();
-        PreparedStatement ST = this.conexion.prepareStatement("UPDATE administracion SET id_enfermera = ?, id_contenido = ?,"
-                + "adm_estado = ?, adm_detalles = ?, adm_fecha_hr = ?"
+        ST = this.conexion.prepareStatement("UPDATE administracion SET id_enfermera = ?, id_contenido = ?,"
+                + "adm_estado = ?, adm_detalles = ?, adm_fecha_hr = ? "
                 + "WHERE administracion.id_administracion = ?");
         
-        id_enf = recuperarIdEnfermera(administracion.getEnf_nombre()); //Transformación de las variables
+        id_enf = recuperarIdEnfermera(administracion.getEnf_nombre());
         id_con = recuperarIdContenido(administracion.getDescripcion_dosis());
 
         ST.setInt(1, id_enf);
         ST.setInt(2, id_con);
         ST.setBoolean(3, administracion.isAdm_estado());
         ST.setString(4, administracion.getAdm_detalles());
-        
-        // Conversión de String a Timestamp
-        //String fechaHrString = administracion.getAdm_fecha_hr();  // Si getAdm_fecha_hr() retorna un String
-        //Timestamp fechaHrTimestamp = Timestamp.valueOf(fechaHrString);  // Conversión
-        java.util.Date fechaHrDate = administracion.getAdm_fecha_hr();
-        Timestamp fechaHrTimestamp = new Timestamp(fechaHrDate.getTime());
-        ST.setTimestamp(5, fechaHrTimestamp);
-        
+
+        // Si getAdm_fecha_hr() devuelve un java.util.Date se convierte Timestamp
+        java.util.Date fechaHrDate = administracion.getAdm_fecha_hr(); // Obtén la fecha como Date
+        if (fechaHrDate != null) {
+            Timestamp fechaHrTimestamp = new Timestamp(fechaHrDate.getTime()); // Convierte Date a Timestamp
+            ST.setTimestamp(5, fechaHrTimestamp);
+        } else {
+            ST.setNull(5, java.sql.Types.TIMESTAMP);
+        }
+
         ST.setInt(6, administracion.getId_administracion());
         filasAfectadas = ST.executeUpdate();
     } catch (SQLException err) {
+        System.err.println("Error en modificarAdministracion: " + err.getMessage());
         throw err;
     } finally {
+        if (ST != null) {
+            ST.close();
+        }
         this.cerrar();
     }
     return filasAfectadas;
