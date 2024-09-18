@@ -245,6 +245,11 @@ public final class InterfazMedFinal extends javax.swing.JFrame {
                 btnCancelarMouseClicked(evt);
             }
         });
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -632,7 +637,7 @@ public final class InterfazMedFinal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Obligatoriamente debe de haber una descripción del medicamento","Error",0);
         }
                 
-        if(cmbPresentacionIns.getSelectedItem()=="Tabletas" || cmbUnidadIns.getSelectedItem()=="MILILITROS")
+        if(cmbPresentacionIns.getSelectedItem()=="Tabletas" && cmbUnidadIns.getSelectedItem()=="MILILITROS")
         {
             JOptionPane.showMessageDialog(null, "La unidad de medida no corresponde con la presentación","Error",0);
             error=true;
@@ -805,8 +810,11 @@ public final class InterfazMedFinal extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Hubo un problema al eliminar el medicamento:\n" +ex,"Error",0);
         }
-        txtCantidadIns.setText("");
-        txtDescripcionIns.setText("");
+        txtCantidadAct.setText("");
+        txtDescripcionAct.setText("");
+        txtCantidadDel.setText("");
+        txtDescripcionDel.setText("");
+        
         CrearTabla();
        }
     }//GEN-LAST:event_btnEliminarMouseClicked
@@ -833,8 +841,8 @@ public final class InterfazMedFinal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActMouseEntered
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //this.setVisible(false);
-        //new Home().setVisible(true);
+        this.setVisible(false);
+        new Home().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnLimpiarInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarInsActionPerformed
@@ -844,6 +852,11 @@ public final class InterfazMedFinal extends javax.swing.JFrame {
     private void btnLimpiarActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActActionPerformed
         txtDescripcionAct.setText("");
     }//GEN-LAST:event_btnLimpiarActActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtCantidadIns.setText("");
+        txtDescripcionIns.setText("");
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
