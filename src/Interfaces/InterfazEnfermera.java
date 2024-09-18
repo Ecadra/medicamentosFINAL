@@ -750,7 +750,7 @@ public class InterfazEnfermera extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarEnfermeraActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-      /* try{
+     try{
            Home inicio = new Home();
             inicio.setVisible(true);
             // Cerrar la ventana
@@ -758,9 +758,7 @@ public class InterfazEnfermera extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Ocurrió un error",
                     "Error",0);
-
         }
-        */
     }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
