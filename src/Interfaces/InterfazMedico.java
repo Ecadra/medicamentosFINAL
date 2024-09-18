@@ -1463,6 +1463,7 @@ public class InterfazMedico extends javax.swing.JFrame {
                 listarRegistros(cmbFiltroMedico.getSelectedIndex(),
                         txtCriterioMedico.getText(),
                         cmbOrdenMedico.getSelectedIndex());
+                limpiarInsertar();
                 JOptionPane.showMessageDialog(rootPane,
                         "Datos del medico actualizados correctamente",
                         "Registro satisfactorio",
