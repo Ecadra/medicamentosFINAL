@@ -1101,8 +1101,8 @@ public class InterfazContReceta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //this.setVisible(false);
-        //new Home().setVisible(true);
+        this.setVisible(false);
+        new Home().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtBuscarMedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarMedKeyReleased

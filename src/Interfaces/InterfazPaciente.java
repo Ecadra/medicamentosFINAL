@@ -683,6 +683,11 @@ public class InterfazPaciente extends javax.swing.JFrame {
         tbdFunciones.addTab("Eliminar", jPanel3);
 
         btnRegresar.setText("Regresar al menú principal");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1005,6 +1010,20 @@ public class InterfazPaciente extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+         // TODO add your handling code here:
+         try{
+           Home inicio = new Home();
+            inicio.setVisible(true);
+            // Cerrar la ventana
+            dispose();  
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error",
+                    "Error",0);
+
+        }
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     public ArrayList<String> separarEnPalabras(String texto) {
         // Usamos el método split para dividir el string en palabras usando espacios en blanco como delimitador
