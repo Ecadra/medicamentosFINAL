@@ -1117,6 +1117,11 @@ public class InterfazMedico extends javax.swing.JFrame {
         tbdFunciones.addTab("Eliminar", tabEliminar);
 
         btnRegresar.setText("Regresar al menú");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Registros recientes (40)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP));
 
@@ -1719,6 +1724,20 @@ public class InterfazMedico extends javax.swing.JFrame {
     private void txtNumExtDirMed2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumExtDirMed2FocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumExtDirMed2FocusGained
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+         // TODO add your handling code here:
+         try{
+           Home inicio = new Home();
+            inicio.setVisible(true);
+            // Cerrar la ventana
+            dispose();  
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error",
+                    "Error",0);
+
+        }
+    }//GEN-LAST:event_btnRegresarActionPerformed
     public ArrayList<String> separarEnPalabras(String texto) {
         // Usamos el método split para dividir el string en palabras usando espacios en blanco como delimitador
         String[] palabrasArray = texto.split("\\s+");
